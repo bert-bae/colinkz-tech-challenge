@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (request, response) => {
-  console.log('server connected');
-  response.send('Hello world!')
+  response.render('url_home');
 })
 
 app.listen(PORT, () => {
