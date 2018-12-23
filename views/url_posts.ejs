@@ -4,16 +4,18 @@
   <body>
     <% include ./partials/_navbar.ejs %>
     <div class='main-container'>
+
       <% data.forEach((post) => { %>
         <div class='post-container'>
           <div class='post-header'>
-            <h3><%= post.title %></h3>
+            <h3>Title: <%= post.title %></h3>
             <h5>Author: <%= post.email %></h5>
           </div>
           <p><%= post.description %></p>
           <p><i>Posted on: <%= post.date %></i></p>
         </div>
       <% }) %>
+      
     </div>
   </body>
 </html>

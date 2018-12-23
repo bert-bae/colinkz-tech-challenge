@@ -28,6 +28,7 @@ app.get('/posts', (request, response) => {
   pool.query('SELECT * FROM posts ORDER BY date DESC')
     .then((res) => {
       let data = res.rows;
+      data.reverse();
       response.render('url_posts', { data });
     })
     .catch((err) => {
@@ -56,9 +57,10 @@ app.post('/posts/submit', (request, response) => {
     console.log('Content must be between 3 to 1000 characters!')
     return;
   } else {
+    console.log(input);
     const date = (new Date).toDateString();
     pool.query('INSERT INTO posts(title, description, email, date) VALUES ($1, $2, $3, $4);', 
-      [input.email, input.title, input.description, date])
+      [input.title, input.description, input.email, date])
       .then((result) => {;
         response.redirect('/posts');
       })
