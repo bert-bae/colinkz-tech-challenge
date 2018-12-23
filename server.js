@@ -21,7 +21,15 @@ app.get('/', (request, response) => {
 })
 
 app.get('/posts', (request, response) => {
-  response.render('url_posts');
+  pool.query('SELECT * FROM posts ORDER BY date DESC')
+    .then((res) => {
+      let data = res.rows;
+      console.log(res.rows);
+      response.render('url_posts', { data });
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 })
 
 app.get('/posts/submit', (request, response) => {
@@ -29,7 +37,17 @@ app.get('/posts/submit', (request, response) => {
 })
 
 app.post('/posts/submit', (request, response) => {
-  console.log(request.body);
+  const input = request.body;
+  const date = new Date;
+
+  pool.query('INSERT INTO posts (title, description, email) VALUES ($1, $2, $3, $4)', 
+    [input.email, input.title, input.description, date.toDateString()])
+    .then((result) => {;
+      response.redirect('url_posts');
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 })
 
 app.listen(PORT, () => {
