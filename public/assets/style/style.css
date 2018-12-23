@@ -1,0 +1,56 @@
+div.nav-bar {
+  display: flex;
+  background-color: orange;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 30px;
+}
+
+.directory {
+  margin-right: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+.directory form {
+  padding-right: 8px;
+}
+
+.directory button {
+  background-color: #fff;
+  color: black;
+}
+
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.post-container {
+  width: 100%;
+  background-color: lightgrey;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+form.submission-form {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.form-content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  height: 200px;
+  word-wrap: break-word;
+}

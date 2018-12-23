@@ -3,12 +3,16 @@
   <% include ./partials/_head.ejs %>
   <body>
     <% include ./partials/_navbar.ejs %>
-    
-    <form method='post' action='/posts/submit'>
-      <input type="email" name="email" placeholder = 'E-Mail'/><br>
-      <input type='string' name='title' placeholder = 'Content Title'/><br>
-      <input type='string' name='description' placeholder = 'Post Content'/><br>
-      <input type='submit'/>
-    </form>
+    <div class='main-container'>
+      <form class='submission-form'method='post' action='/posts/submit'>
+        <div class="form-content">
+          <h3>Write a blog post!</h3>
+          <label>E-Mail</label><input type="email" name="email" placeholder = 'E-Mail'/><br>
+          <label>Title</label><input type='string' name='title' placeholder = 'Content Title'/><br>
+          <label>Content</label><textarea class='content' type='string' name='description'></textarea><br>
+          <input type='submit'/>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

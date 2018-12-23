@@ -15,6 +15,7 @@ const pool = new Pool({
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/public', express.static('public'));
 
 app.get('/', (request, response) => {
   response.render('url_home');
@@ -24,7 +25,6 @@ app.get('/posts', (request, response) => {
   pool.query('SELECT * FROM posts ORDER BY date DESC')
     .then((res) => {
       let data = res.rows;
-      console.log(res.rows);
       response.render('url_posts', { data });
     })
     .catch((err) => {
@@ -38,12 +38,19 @@ app.get('/posts/submit', (request, response) => {
 
 app.post('/posts/submit', (request, response) => {
   const input = request.body;
-  const date = new Date;
 
-  pool.query('INSERT INTO posts (title, description, email) VALUES ($1, $2, $3, $4)', 
-    [input.email, input.title, input.description, date.toDateString()])
+  // TODO: apply proper error handling for UI
+  if (input.title.length < 255) {
+    return;
+  }
+  if (input.description.length <= 1000 && input.description.length < 3) {
+    return;
+  }
+  const date = (new Date).toDateString();
+  pool.query('INSERT INTO posts(title, description, email, date) VALUES ($1, $2, $3, $4);', 
+    [input.email, input.title, input.description, date])
     .then((result) => {;
-      response.redirect('url_posts');
+      response.redirect('/posts');
     })
     .catch((err) => {
       console.error(err);
