@@ -20,6 +20,18 @@ app.get('/', (request, response) => {
   response.render('url_home');
 })
 
+app.get('/posts', (request, response) => {
+  response.render('url_posts');
+})
+
+app.get('/posts/submit', (request, response) => {
+  response.render('url_submit');
+})
+
+app.post('/posts/submit', (request, response) => {
+  console.log(request.body);
+})
+
 app.listen(PORT, () => {
   console.log(`Connected to ${PORT}`)
 })
