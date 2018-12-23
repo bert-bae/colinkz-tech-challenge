@@ -2,9 +2,13 @@
 <html>
   <% include ./partials/_head.ejs %>
   <body>
-    <div class='nav-bar'>
-      <h1>CoBlogz</h1>
-      <% include ./partials/_navbar.ejs %>
-      
+    <% include ./partials/_navbar.ejs %>
+    
+    <form method='post' action='/posts/submit'>
+      <input type="email" name="email" placeholder = 'E-Mail'/><br>
+      <input type='string' name='title' placeholder = 'Content Title'/><br>
+      <input type='string' name='description' placeholder = 'Post Content'/><br>
+      <input type='submit'/>
+    </form>
   </body>
 </html>
